@@ -1,32 +1,36 @@
-<!DOCTYPE html>
-
-<html>
-
-<head>
-	<link rel="stylesheet" href="styles.css">
-</head>
-
-<body>	
-	<script>
-		function secondHighest(arr) {
-			//Write your code here
-			
+<script>
+	function secondHighest(arr) {
+		if (!arr || arr.length < 2) {
+			return -Infinity;
 		}
 
-		function Main() {
-			var n = prompt("Enter the number of elements");
-			var arr = [];
-			for (var i = 0; i < n; i++) {
-				arr[i] = prompt("Enter element " + (i+1));
+		let first = -Infinity;
+		let second = -Infinity;
+
+		for (let num of arr) {
+			num = Number(num); //
+
+			if (num > first) {
+				second = first;
+				first = num;
+			} else if (num > second && num < first) {
+				second = num;
 			}
-			alert(secondHighest(arr));
 		}
-		Main();
-	</script>
 
-    <script type="text/javascript" src="./script.js">
+		return second;
+	}
+
+	function Main() {
+		var n = prompt("Enter the number of elements");
+		var arr = [];
+
+		for (var i = 0; i < n; i++) {
+			arr[i] = Number(prompt("Enter element " + (i+1))); // ✅ convert here also
+		}
+
+		alert(secondHighest(arr));
+	}
+
+	Main();
 </script>
-
-</body>
-
-</html>
